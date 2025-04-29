@@ -1,0 +1,45 @@
+<project name="project1sdf" default="jar" basedir=".">
+
+<property name="src_dir" value="javasrc"/>
+<property name="build_dir" value="build"/>
+<property name="jar_file" value="aarithmetic.jar"/>
+<property name="main_class" value="MyInfArith"/>
+
+    <target name="clean">
+        <echo>Deleting old build files</echo >
+        <delete dir="${build_dir}"/>
+        <delete file="${jar_file}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build_dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <echo>Compiling Java files</echo>
+        <javac srcdir="${src_dir}" destdir="${build_dir}" includeantruntime="false"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <echo>Creating JAR file</echo>
+	    <jar destfile="${jar_file}">
+		<fileset dir="${build_dir}">
+            	        <include name="arbitraryarithmetic/**/*.class"/>
+        	</fileset>
+	    </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <echo>Running files</echo>
+        <java classname="${main_class}" fork="true">
+            <classpath>
+                <pathelement path="${build_dir}"/>
+            </classpath>
+            <arg value="${arg1}"/>
+            <arg value="${arg2}"/>
+            <arg value="${arg3}"/>
+            <arg value="${arg4}"/>
+        </java>
+    </target>
+</project>
+
