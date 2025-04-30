@@ -1,8 +1,8 @@
-<project name="project1sdf" default="jar" basedir=".">
+<project name="project1sdf" default="compile" basedir=".">
 
 <property name="src_dir" value="javasrc"/>
 <property name="build_dir" value="build"/>
-<property name="jar_file" value="aarithmetic.jar"/>
+<property name="jar_file" value="arbitraryarithmetic/aarithmetic.jar"/>
 <property name="main_class" value="MyInfArith"/>
 
     <target name="clean">
@@ -21,7 +21,7 @@
     </target>
 
     <target name="jar" depends="compile">
-        <echo>Creating JAR file</echo>
+        <echo>Creating jar file</echo>
 	    <jar destfile="${jar_file}">
 		<fileset dir="${build_dir}">
             	        <include name="arbitraryarithmetic/**/*.class"/>

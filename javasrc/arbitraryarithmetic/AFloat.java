@@ -485,7 +485,10 @@ public class AFloat{
         }
         str+=".";
         temp+="0";
-        int precision = 1000;
+        int precision=30;
+        if (str2.length()>30){
+            precision=str2.length();
+        }
         for (int i=0;i<precision;i++) {
             temp=removezeroesatstart(temp);
             int count2=0;
