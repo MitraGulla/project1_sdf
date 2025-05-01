@@ -1,14 +1,14 @@
 package arbitraryarithmetic;
 public class AFloat{
-    public String string1;
+    public String strvalue;
     public AFloat(){
-        this.string1="0";
+        this.strvalue="0";
     }
     public AFloat(String str) {
-        this.string1=str;
+        this.strvalue=str;
     }
     public AFloat(AFloat other){
-        this.string1=other.string1;
+        this.strvalue=other.strvalue;
     }
     public String removezeroesatstart(String str){
         int i=0;
@@ -49,17 +49,17 @@ public class AFloat{
         return sign;
     }
     public int decimalindex(String str){
-        int a=0;
-        while (a<str.length()){
-            if (str.charAt(a)=='.'){
+        int deciindex=0;
+        while (deciindex<str.length()){
+            if (str.charAt(deciindex)=='.'){
                 break;
             }
-            a++;
+            deciindex++;
         }
-        return a;
+        return deciindex;
     }
-    public String addzeroes(int a,String str){
-        if (a==str.length()){
+    public String addzeroes(int deciindex,String str){
+        if (deciindex==str.length()){
             str=str+".0";
         }
         return str;
@@ -81,17 +81,17 @@ public class AFloat{
     }
     public String less(String str1, String str2) {
         if (str1.length()==str2.length()) {
-            int i=0;
-            while (i<str1.length()) {
-                if (str1.charAt(i)!=str2.charAt(i)) {
+            int index=0;
+            while (index<str1.length()) {
+                if (str1.charAt(index)!=str2.charAt(index)) {
                     break;
                 }
-                i++;
+                index++;
             }
-            if (i==str2.length()) {
+            if (index==str2.length()) {
                 return str2;
             }
-            else if (str1.charAt(i)<str2.charAt(i)) {
+            else if (str1.charAt(index)<str2.charAt(index)) {
                 return str1;
             }
             else {
@@ -109,7 +109,7 @@ public class AFloat{
         return new AFloat(str);
     }    
     public String toString() {
-        return this.string1;
+        return this.strvalue;
     }
 
     public String addition(String str1,String str2) {
@@ -138,8 +138,8 @@ public class AFloat{
     }
     
     public AFloat add(AFloat string2){
-        String str1=this.string1;
-        String str2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
 
         boolean sign1=false;
         boolean sign2=false;
@@ -216,28 +216,28 @@ public class AFloat{
         
         for (int i=str2.length()-1;i>=0;i--) {
             int num2=Integer.parseInt(str2.charAt(i)+"");
-            String a="";
+            String temp="";
             int extra=0;
             
             for (int j=str1.length()-1;j>=0;j--) {
                 int num1=Integer.parseInt(str1.charAt(j)+"");
                 int product=(num1*num2)+extra;
-                a=Integer.toString(product%10)+a;
+                temp=Integer.toString(product%10)+temp;
                 extra=product/10;
             }
             if (extra!=0) {
-                a=Integer.toString(extra)+a;
+                temp=Integer.toString(extra)+temp;
             }
             for (int z=0;z<str2.length()-1-i;z++) {
-                a+="0";
+                temp+="0";
             }
-            str=addition(str,a);
+            str=addition(str,temp);
         } 
         return removezeroesatstart(str);
     }
     public AFloat mul(AFloat string2){
-        String str1=this.string1;
-        String str2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         String signformul="";
         if ((str1.charAt(0)=='-')^(str2.charAt(0)=='-')){
             if (str1.charAt(0)=='-'){
@@ -283,17 +283,17 @@ public class AFloat{
         String finalStr="";
         String sign=Sign(str1,str2);
         if(str1.length()==str2.length()) {
-            int i=0;
-            while (i<str1.length()) {
-                if (str1.charAt(i)!=str2.charAt(i)) {
+            int index=0;
+            while (index<str1.length()) {
+                if (str1.charAt(index)!=str2.charAt(index)) {
                     break;
                 }
-                i+=1;
+                index+=1;
             }
-            if (i==str1.length()) {
+            if (index==str1.length()) {
                 return "0";
             } 
-            else if (str1.charAt(i)<str2.charAt(i)) {
+            else if (str1.charAt(index)<str2.charAt(index)) {
                 String temp=str1;
                 str1=str2;
                 str2=temp;
@@ -341,8 +341,8 @@ public class AFloat{
     }
 
     public AFloat sub(AFloat string2){
-        String str1=this.string1;
-        String str2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         boolean sign1=false;
         boolean sign2=false;
         if (str1.charAt(0)=='-') {
@@ -422,8 +422,8 @@ public class AFloat{
     }
 
     public AFloat div(AFloat string2){
-        String str1=this.string1;
-        String str2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         String signfordiv="";
         if ((str1.charAt(0)=='-')^(str2.charAt(0)=='-')){
             if (str1.charAt(0)=='-'){
@@ -481,7 +481,7 @@ public class AFloat{
                     temp=subtract(temp,str2);
                     count+=1;
             }
-            str+=count;
+            str+=Integer.toString(count);
         }
         str+=".";
         temp+="0";
@@ -497,7 +497,7 @@ public class AFloat{
                 count2++;
             }
             temp+="0";
-            str+=count2;
+            str+=Integer.toString(count2);
         }
         str=removezeroesatend(str);
         str=removezeroesatstart(str);

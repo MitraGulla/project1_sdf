@@ -1,23 +1,23 @@
 package arbitraryarithmetic;
 public class AInteger{
-    public String string1;
+    public String strvalue;
     /**
      * Default constructor initializes the value to "0".
      */
     public AInteger(){
-        this.string1="0";
+        this.strvalue="0";
     }
 
     /**
      * Constructs an AInteger from string and removes zeroes at starting.
-     * @param s Number 
+     * @param str Number 
      */
-    public AInteger(String s) {
-        if (s.charAt(0)=='-') {
-            this.string1="-"+removezeroes(s.substring(1));
+    public AInteger(String str) {
+        if (str.charAt(0)=='-') {
+            this.strvalue="-"+removezeroes(str.substring(1));
         }
         else{
-            this.string1=removezeroes(s);
+            this.strvalue=removezeroes(str);
         }
     }
 
@@ -26,46 +26,46 @@ public class AInteger{
      * @param other another instance of AInteger
      */
     public AInteger(AInteger other){
-        this.string1=other.string1;
+        this.strvalue=other.strvalue;
     }
 
     /**
      * Removes zeroes from the starting of a string
-     * @param s string
+     * @param str string
      * @return string without leading zeroes
      */
-    public String removezeroes(String s){
+    public String removezeroes(String str){
         int i=0;
-        while (i<s.length()) {
-            if (s.charAt(i)!='0'){
+        while (i<str.length()) {
+            if (str.charAt(i)!='0'){
                 break;
             }
             i+=1;
         }
-        if (i==s.length()) {
+        if (i==str.length()) {
             return "0";
         }
         else{
-            return s.substring(i,s.length());
+            return str.substring(i,str.length());
         }
     }
 
     /**
-     * Determines the sign of the result of s1 - s2
-     * @param s1 first number string
-     * @param s2 second number string
-     * @return "-" if s1<s2 otherwise empty string ""
+     * Determines the sign of the result of str1 - str2
+     * @param str1 first number string
+     * @param str2 second number string
+     * @return "-" if str1<str2 otherwise empty string ""
      */
-    public String Sign(String s1,String s2){
+    public String Sign(String str1,String str2){
         String sign="";
-        if (s1.length()<s2.length()){
+        if (str1.length()<str2.length()){
             sign="-";
         }
-        else if(s1.length()==s2.length()) {
+        else if(str1.length()==str2.length()) {
             int i=0;
-            while (i<s1.length()) {
-                if (s1.charAt(i)!=s2.charAt(i)) {
-                    if (s1.charAt(i)<s2.charAt(i)){
+            while (i<str1.length()) {
+                if (str1.charAt(i)!=str2.charAt(i)) {
+                    if (str1.charAt(i)<str2.charAt(i)){
                         sign="-";
                     }
                     break;
@@ -78,70 +78,70 @@ public class AInteger{
 
     /**
      * Returns the lesser of two strings
-     * @param s1 first number string
-     * @param s2 second number string
+     * @param str1 first number string
+     * @param str2 second number string
      * @return smaller string
      */
-    public String less(String s1, String s2) {
-        if (s1.length()==s2.length()) {
-            int i=0;
-            while (i<s1.length()) {
-                if (s1.charAt(i)!=s2.charAt(i)) {
+    public String less(String str1, String str2) {
+        if (str1.length()==str2.length()) {
+            int index=0;
+            while (index<str1.length()) {
+                if (str1.charAt(index)!=str2.charAt(index)) {
                     break;
                 }
-                i++;
+                index++;
             }
-            if (i==s2.length()) {
-                return s2;
+            if (index==str2.length()) {
+                return str2;
             }
-            else if (s1.charAt(i)<s2.charAt(i)) {
-                return s1;
+            else if (str1.charAt(index)<str2.charAt(index)) {
+                return str1;
             }
             else {
-                return s2;
+                return str2;
             }
         } 
-        else if (s1.length()<s2.length()) {
-            return s1;
+        else if (str1.length()<str2.length()) {
+            return str1;
         } 
         else {
-            return s2;
+            return str2;
         }
     }
     
     /**
      * Parses a string into an AInteger object
-     * @param s string to parse
+     * @param str string to parse
      * @return AInteger object
      */
-    public static AInteger parse(String s) {
-        return new AInteger(s);
+    public static AInteger parse(String str) {
+        return new AInteger(str);
     }  
 
     public String toString() {
-        return this.string1;
+        return this.strvalue;
     }
 
     
     /**
      * Adds two numeric strings
-     * @param s1 first number string
-     * @param s2 second number string
+     * @param str1 first number string
+     * @param str2 second number string
      * @return sum as string
      */
-    public String addition(String s1,String s2) {
+    public String addition(String str1,String str2) {
         int extra=0;
         String finalStr="";
-        while (!s1.isEmpty()||!s2.isEmpty()) {
+        while (!str1.isEmpty()||!str2.isEmpty()) {
             int num1=0,num2=0;
-            if (!s1.isEmpty()){
-                num1=Integer.parseInt(s1.charAt(s1.length()-1)+"");
-                s1=s1.substring(0,s1.length()-1);
+            if (!str1.isEmpty()){
+                num1=Integer.parseInt(str1.charAt(str1.length()-1)+"");
+                str1=str1.substring(0,str1.length()-1);
             }
     
-            if (!s2.isEmpty()){
-                num2= Integer.parseInt(s2.charAt(s2.length()-1)+"");
-                s2=s2.substring(0,s2.length()-1);
+            if (!str2.isEmpty()){
+                num2= Integer.parseInt(str2.charAt(str2.length()-1)+"");
+                str2=str2.substring(0,str2.length()-1);
             }
             int sum=num1+num2+extra;
             finalStr=Integer.toString(sum%10)+finalStr;
@@ -156,59 +156,59 @@ public class AInteger{
 
     /**
      * Subtracts two numeric strings 
-     * @param s1 first number string
-     * @param s2 second number string
-     * @return difference as string with sign if s1<s2
+     * @param str1 first number string
+     * @param str2 second number string
+     * @return difference as string with sign if str1<str2
      */
-    public String subtract(String s1,String s2){
+    public String subtract(String str1,String str2){
         String finalstr="";
-        String sign=Sign(s1,s2);
-        if(s1.length()==s2.length()) {
-            int i=0;
-            while (i<s1.length()) {
-                if (s1.charAt(i)!=s2.charAt(i)) {
+        String sign=Sign(str1,str2);
+        if(str1.length()==str2.length()) {
+            int index=0;
+            while (index<str1.length()) {
+                if (str1.charAt(index)!=str2.charAt(index)) {
                     break;
                 }
-                i+=1;
+                index+=1;
             }
-            if (i==s1.length()) {
+            if (index==str1.length()) {
                 return "0";
             } 
-            else if (s1.charAt(i)<s2.charAt(i)) {
-                String temp=s1;
-                s1=s2;
-                s2=temp;
+            else if (str1.charAt(index)<str2.charAt(index)) {
+                String temp=str1;
+                str1=str2;
+                str2=temp;
             }
         }
-        else if(s1.length()<s2.length()) {
-            String temp=s1;
-            s1=s2;
-            s2=temp;
+        else if(str1.length()<str2.length()) {
+            String temp=str1;
+            str1=str2;
+            str2=temp;
         }
-        while (!s1.isEmpty()||!s2.isEmpty()) {
+        while (!str1.isEmpty()||!str2.isEmpty()) {
             int num1=0,num2=0;
 
-            if (!s1.isEmpty()) {
-                num1=Integer.parseInt(s1.charAt(s1.length()-1)+"");
-                s1=s1.substring(0,s1.length()-1);
+            if (!str1.isEmpty()) {
+                num1=Integer.parseInt(str1.charAt(str1.length()-1)+"");
+                str1=str1.substring(0,str1.length()-1);
             }
 
-            if (!s2.isEmpty()) {
-                num2=Integer.parseInt(s2.charAt(s2.length()-1)+"");
-                s2=s2.substring(0,s2.length()-1);
+            if (!str2.isEmpty()) {
+                num2=Integer.parseInt(str2.charAt(str2.length()-1)+"");
+                str2=str2.substring(0,str2.length()-1);
             }
 
             if (num1<num2) {
-                int i=s1.length()-1;
-                while (i>=0) {
-                    if (s1.charAt(i)!='0') {
-                        char borrowed=(char)(s1.charAt(i)-1);
-                        s1=s1.substring(0,i)+borrowed+s1.substring(i+1);
+                int len=str1.length()-1;
+                while (len>=0) {
+                    if (str1.charAt(len)!='0') {
+                        char borrowed=(char)(str1.charAt(len)-1);
+                        str1=str1.substring(0,len)+borrowed+str1.substring(len+1);
                         break;
                     }
                     else {
-                        s1=s1.substring(0,i)+'9'+s1.substring(i+1);
-                        i-=1;
+                        str1=str1.substring(0,len)+'9'+str1.substring(len+1);
+                        len-=1;
                     }
                 }
                 num1+=10;
@@ -227,34 +227,34 @@ public class AInteger{
      * @return sum as AInteger
      */
     public AInteger add(AInteger string2) {
-        String s1=this.string1;
-        String s2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         boolean sign1=false;
         boolean sign2=false;
-        if (s1.charAt(0)=='-') {
+        if (str1.charAt(0)=='-') {
             sign1=true;
         }
-        if (s2.charAt(0)=='-') {
+        if (str2.charAt(0)=='-') {
             sign2=true;
         }
         if (sign1) {
-            s1=s1.substring(1);
+            str1=str1.substring(1);
         }
         if (sign2) {
-            s2=s2.substring(1);
+            str2=str2.substring(1);
         }
     
         if (sign1&&sign2) {
-            return new AInteger("-"+addition(s1,s2));
+            return new AInteger("-"+addition(str1,str2));
         } 
         else if (sign1) {
-            return new AInteger(subtract(s2,s1));
+            return new AInteger(subtract(str2,str1));
         } 
         else if (sign2) {
-            return new AInteger(subtract(s1,s2));
+            return new AInteger(subtract(str1,str2));
         } 
         else {
-            return new AInteger(addition(s1,s2));
+            return new AInteger(addition(str1,str2));
         }
     }
     
@@ -265,66 +265,66 @@ public class AInteger{
      * @return difference as AInteger
      */
     public AInteger sub(AInteger string2) {
-        String s1=this.string1;
-        String s2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         boolean sign1=false;
         boolean sign2=false;
-        if (s1.charAt(0)=='-') {
+        if (str1.charAt(0)=='-') {
             sign1=true;
         }
-        if (s2.charAt(0)=='-') {
+        if (str2.charAt(0)=='-') {
             sign2=true;
         }
         if (sign1) {
-            s1=s1.substring(1);
+            str1=str1.substring(1);
         }
         if (sign2) {
-            s2=s2.substring(1);
+            str2=str2.substring(1);
         }
     
         if (sign1&&!sign2) {
-            return new AInteger("-"+addition(s1,s2));
+            return new AInteger("-"+addition(str1,str2));
         } 
         else if (!sign1&&sign2) {
-            return new AInteger(addition(s1,s2));
+            return new AInteger(addition(str1,str2));
         } 
         else if (sign1&&sign2) {
-            return new AInteger(subtract(s2,s1));
+            return new AInteger(subtract(str2,str1));
         } 
         else {
-            return new AInteger(subtract(s1,s2));
+            return new AInteger(subtract(str1,str2));
         }
     }
     
     
     /**
      * Mutiples two numeric strings
-     * @param s1 first number string
-     * @param s2 second number string
+     * @param str1 first number string
+     * @param str2 second number string
      * @return product as string
      */
-    public String multiply(String s1,String s2) {
-        String s="0";
-        for (int i=s2.length()-1;i>=0;i--) {
-            int num2=Integer.parseInt(s2.charAt(i)+"");
-            String a="";
+    public String multiply(String str1,String str2) {
+        String str="0";
+        for (int i=str2.length()-1;i>=0;i--) {
+            int num2=Integer.parseInt(str2.charAt(i)+"");
+            String temp="";
             int extra=0;
             
-            for (int j=s1.length()-1;j>=0;j--) {
-                int num1=Integer.parseInt(s1.charAt(j)+"");
+            for (int j=str1.length()-1;j>=0;j--) {
+                int num1=Integer.parseInt(str1.charAt(j)+"");
                 int product=(num1*num2)+extra;
-                a=Integer.toString(product%10)+a;
+                temp=Integer.toString(product%10)+temp;
                 extra=product/10;
             }
             if (extra!=0) {
-                a=Integer.toString(extra)+a;
+                temp=Integer.toString(extra)+temp;
             }
-            for (int z=0;z<s2.length()-1-i;z++) {
-                a+="0";
+            for (int z=0;z<str2.length()-1-i;z++) {
+                temp+="0";
             }
-            s=addition(s,a);
+            str=addition(str,temp);
         }
-        return removezeroes(s);
+        return removezeroes(str);
     }
 
     /**
@@ -334,23 +334,23 @@ public class AInteger{
      * @return product as AInteger
      */
     public AInteger mul(AInteger string2) {
-        String s1=this.string1;
-        String s2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         String signformul="";
-        if ((s1.charAt(0)=='-')^(s2.charAt(0)=='-')){
-            if (s1.charAt(0)=='-'){
-                s1=s1.substring(1);
+        if ((str1.charAt(0)=='-')^(str2.charAt(0)=='-')){
+            if (str1.charAt(0)=='-'){
+                str1=str1.substring(1);
             }
-            if (s2.charAt(0)=='-'){
-                s2=s2.substring(1);
+            if (str2.charAt(0)=='-'){
+                str2=str2.substring(1);
             }
             signformul="-";
             }
-        if ((s1.charAt(0)=='-')&&(s2.charAt(0)=='-')){
-            s1=s1.substring(1); 
-            s2=s2.substring(1);
+        if ((str1.charAt(0)=='-')&&(str2.charAt(0)=='-')){
+            str1=str1.substring(1); 
+            str2=str2.substring(1);
         }
-        String result=multiply(s1, s2);
+        String result=multiply(str1, str2);
         if (result.equals("0")){
             return new AInteger(result);
         }
@@ -366,44 +366,44 @@ public class AInteger{
      * @return quotient as AInteger
      */
     public AInteger div(AInteger string2){
-        String s1=this.string1;
-        String s2=string2.string1;
+        String str1=this.strvalue;
+        String str2=string2.strvalue;
         String signfordiv="";
-        if ((s1.charAt(0)=='-')^(s2.charAt(0)=='-')){
-            if (s1.charAt(0)=='-'){
-                s1=s1.substring(1);
+        if ((str1.charAt(0)=='-')^(str2.charAt(0)=='-')){
+            if (str1.charAt(0)=='-'){
+                str1=str1.substring(1);
             }
-            if (s2.charAt(0)=='-'){
-                s2=s2.substring(1);
+            if (str2.charAt(0)=='-'){
+                str2=str2.substring(1);
             }
             signfordiv="-";
         }
-        if ((s1.charAt(0)=='-')&&(s2.charAt(0)=='-')){
-            s1=s1.substring(1);
-            s2=s2.substring(1);
+        if ((str1.charAt(0)=='-')&&(str2.charAt(0)=='-')){
+            str1=str1.substring(1);
+            str2=str2.substring(1);
         }
 
-        if ((removezeroes(s2)).equals("0")){
+        if ((removezeroes(str2)).equals("0")){
             throw new ArithmeticException("Division by zero");
         }
-        String s="";
+        String str="";
         String temp="";
-        for (int j=0;j<s1.length();j++){
+        for (int j=0;j<str1.length();j++){
             int count=0;
-            temp+=s1.charAt(j);
+            temp+=str1.charAt(j);
             temp=removezeroes(temp);
-            while (less(temp,s2).equals(s2)){
-                    temp=subtract(temp,s2);
+            while (less(temp,str2).equals(str2)){
+                    temp=subtract(temp,str2);
                     count+=1;
             }
-            s+=count;
+            str+=Integer.toString(count);
         }
-        s=removezeroes(s);
-        if (s.equals("0")){
-            return new AInteger(s);
+        str=removezeroes(str);
+        if (str.equals("0")){
+            return new AInteger(str);
         }
         else{
-            return new AInteger(signfordiv+s);
+            return new AInteger(signfordiv+str);
         }
     }
 }

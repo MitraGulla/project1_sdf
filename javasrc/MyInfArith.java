@@ -12,48 +12,54 @@ public class MyInfArith{
 
         if (type.equals("int")){
 
-            AInteger s1=new AInteger(num1);
-            AInteger s2=new AInteger(num2);
-            AInteger finalresult = null;
-
-            switch (operation){
-                case "add":
-                    finalresult=s1.add(s2);
-                    break;
-                case "sub":
-                    finalresult=s1.sub(s2);
-                    break;
-                case "mul":
-                    finalresult=s1.mul(s2);
-                    break;
-                case "div":
-                    finalresult=s1.div(s2);
-                    break;
-                default:
-                    System.out.println("This operation is not supported.");
-                    return;
+            int checkdecimal=-1;
+            if (num1.indexOf(".")!=checkdecimal||num2.indexOf(".")!=checkdecimal) {
+                System.out.println("Usage error:Only integers are allowed");
             }
-            System.out.println("Output: "+finalresult);
+            else{
+                AInteger str1=new AInteger(num1);
+                AInteger str2=new AInteger(num2);
+                AInteger finalresult = null;
+
+                switch (operation){
+                    case "add":
+                        finalresult=str1.add(str2);
+                        break;
+                    case "sub":
+                        finalresult=str1.sub(str2);
+                        break;
+                    case "mul":
+                        finalresult=str1.mul(str2);
+                        break;
+                    case "div":
+                        finalresult=str1.div(str2);
+                        break;
+                    default:
+                        System.out.println("This operation is not supported.");
+                        return;
+                }
+                System.out.println("Output: "+finalresult);
+            }
         }
 
         else if (type.equals("float")){
 
-            AFloat s1=new AFloat(num1);
-            AFloat s2=new AFloat(num2);
+            AFloat str1=new AFloat(num1);
+            AFloat str2=new AFloat(num2);
             AFloat finalresult = null;
 
             switch (operation){
                 case "add":
-                    finalresult=s1.add(s2);
+                    finalresult=str1.add(str2);
                     break;
                 case "sub":
-                    finalresult=s1.sub(s2);
+                    finalresult=str1.sub(str2);
                     break;
                 case "mul":
-                    finalresult=s1.mul(s2);
+                    finalresult=str1.mul(str2);
                     break;
                 case "div":
-                    finalresult=s1.div(s2);
+                    finalresult=str1.div(str2);
                     break;
                 default:
                     System.out.println("This operation is not supported.");
