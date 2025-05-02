@@ -3,11 +3,14 @@ import os,sys
 # Compiles the Java source files
 def compile_java():
 
+    src_dir_path= os.path.join("javasrc","arbitraryarithmetic")
+    main_file_path = os.path.join("javasrc","MyInfArith.java")
+
     #compiles all java files in "javasrc/arbitraryarithmetic" directory
-    result1=os.system("javac javasrc/arbitraryarithmetic/*.java")
+    result1=os.system(f"javac {os.path.join(src_dir_path, '*.java')}")
 
     #compilng the main file "MyInfArith.java" ,including the javasrc directory which has arbitraryarithmetic package
-    result2=os.system("javac -cp javasrc javasrc/MyInfArith.java")
+    result2=os.system(f"javac -cp javasrc {main_file_path}")
 
     if (result1!=0 or result2!=0):
         print("Compilation failed")
